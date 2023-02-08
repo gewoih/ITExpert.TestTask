@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITExpert.Services.TodoManager", "ITExpert.Services\ITExpert.Services.TodoManager.csproj", "{0446FF24-D7E8-4947-9FFB-A221B11B9A5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITExpert.Services.TodoManager", "ITExpert.Services.TodoManager\ITExpert.Services.TodoManager.csproj", "{19839833-57C4-46D7-97DC-866027B4FAA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITExpert.Libraries.SharedLibrary", "ITExpert.Libraries.SharedLibrary\ITExpert.Libraries.SharedLibrary.csproj", "{0191EE3B-8E31-4DF4-B5B9-60498C667176}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0446FF24-D7E8-4947-9FFB-A221B11B9A5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0446FF24-D7E8-4947-9FFB-A221B11B9A5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0446FF24-D7E8-4947-9FFB-A221B11B9A5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0446FF24-D7E8-4947-9FFB-A221B11B9A5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19839833-57C4-46D7-97DC-866027B4FAA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19839833-57C4-46D7-97DC-866027B4FAA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19839833-57C4-46D7-97DC-866027B4FAA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19839833-57C4-46D7-97DC-866027B4FAA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0191EE3B-8E31-4DF4-B5B9-60498C667176}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0191EE3B-8E31-4DF4-B5B9-60498C667176}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0191EE3B-8E31-4DF4-B5B9-60498C667176}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0191EE3B-8E31-4DF4-B5B9-60498C667176}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
