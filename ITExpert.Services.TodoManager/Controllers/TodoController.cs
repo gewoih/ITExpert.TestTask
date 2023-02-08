@@ -93,6 +93,10 @@ namespace ITExpert.Services.TodoManager.Controllers
             {
                 return NotFound(ex.Message);
             }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpDelete]
