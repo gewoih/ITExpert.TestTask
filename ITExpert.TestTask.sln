@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITExpert.Services.TodoManager", "ITExpert.Services\ITExpert.Services.TodoManager.csproj", "{0446FF24-D7E8-4947-9FFB-A221B11B9A5B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0446FF24-D7E8-4947-9FFB-A221B11B9A5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0446FF24-D7E8-4947-9FFB-A221B11B9A5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0446FF24-D7E8-4947-9FFB-A221B11B9A5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0446FF24-D7E8-4947-9FFB-A221B11B9A5B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CE6D36F0-8F81-46E9-9C4E-317C0BF889E9}
+	EndGlobalSection
+EndGlobal
