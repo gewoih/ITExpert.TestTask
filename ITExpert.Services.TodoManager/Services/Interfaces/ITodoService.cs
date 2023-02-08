@@ -1,7 +1,7 @@
 ﻿using ITExpert.Libraries.SharedLibrary.Enums;
 using ITExpert.Libraries.SharedLibrary.Models.DAO;
 
-namespace ITExpert.Services_.Services.Interfaces
+namespace ITExpert.Services.TodoManager.Services.Interfaces
 {
     public interface ITodoService
     {

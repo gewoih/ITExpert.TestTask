@@ -1,5 +1,9 @@
+using ITExpert.Services.TodoManager.DAL.DbContexts;
+using ITExpert.Services.TodoManager.Services;
+using ITExpert.Services.TodoManager.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
-namespace ITExpert.Services_
+namespace ITExpert.Services.TodoManager
 {
     public class Program
     {
@@ -14,6 +18,11 @@ namespace ITExpert.Services_
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            var postgreSqlConnectionString = builder.Configuration.GetConnectionString("PostgreSQL");
+            builder.Services.AddDbContext<TodoDbContext>(options => options.UseNpgsql(postgreSqlConnectionString));
+
+            builder.Services.AddTransient<ITodoService, TodoService>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -26,7 +35,6 @@ namespace ITExpert.Services_
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
