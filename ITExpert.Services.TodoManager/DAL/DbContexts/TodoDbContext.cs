@@ -33,13 +33,21 @@ namespace ITExpert.Services.TodoManager.DAL.DbContexts
             var seedComment2 = new Comment { Id = 2, Text = "Comment2", TodoId = 1 };
             var seedComment3 = new Comment { Id = 3, Text = "Comment3", TodoId = 1 };
 
-            modelBuilder.Entity<Todo>().HasData(createTicketTodo, requestInformationTodo);
-            modelBuilder.Entity<Comment>().HasData(seedComment1, seedComment2, seedComment3);
+            modelBuilder.Entity<Todo>()
+                .HasData(createTicketTodo, requestInformationTodo);
+
+            modelBuilder.Entity<Comment>()
+                .HasData(seedComment1, seedComment2, seedComment3);
+
 
             modelBuilder.Entity<Todo>()
                 .Property(property => property.CreationDateTime)
                 .HasDefaultValueSql("NOW()")
                 .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Todo>()
+                .HasIndex(todo => new { todo.Title, todo.Category })
+                .IsUnique();
         }
     }
 }
