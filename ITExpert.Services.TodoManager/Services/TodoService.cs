@@ -4,6 +4,8 @@ using ITExpert.Libraries.SharedLibrary.Models.DAO;
 using ITExpert.Services.TodoManager.DAL.DbContexts;
 using ITExpert.Services.TodoManager.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace ITExpert.Services.TodoManager.Services
 {
@@ -53,12 +55,21 @@ namespace ITExpert.Services.TodoManager.Services
 
             _todoDbContext.Todos.Attach(todoForDeleting);
             _todoDbContext.Remove(todoForDeleting);
-            await _todoDbContext.SaveChangesAsync();
+
+            try
+            {
+                await _todoDbContext.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                throw new EntityNotFoundException($"Deleting Todo failed. Todo with id='{id}' was not found in database.");
+            }
         }
 
         public async Task<Todo> GetTodoAsync(int id)
         {
             var findedTodo = await _todoDbContext.Todos
+                                .Include(todo => todo.Comments)
                                 .AsNoTracking()
                                 .FirstOrDefaultAsync(todo => todo.Id == id);
 
@@ -76,22 +87,23 @@ namespace ITExpert.Services.TodoManager.Services
                 .ToListAsync();
         }
 
-        public async Task<List<Todo>> GetTodosWithHashAsync()
+        public async Task<List<Tuple<Todo, string>>> GetTodosWithHashAsync()
         {
+            using var md5 = MD5.Create();
+            
             return await _todoDbContext.Todos
                 .AsNoTracking()
                 .Include(todo => todo.Comments)
+                .Select(todo =>
+                Tuple.Create(
+                    todo,
+                    BitConverter.ToString(md5.ComputeHash(Encoding.UTF8.GetBytes(todo.Title)))))
                 .ToListAsync();
         }
 
         public async Task UpdateTodoTitleAsync(int id, string title)
         {
             var findedTodo = await _todoDbContext.Todos
-                .Select(todo => new Todo
-                {
-                    Id = todo.Id,
-
-                })
                 .FirstOrDefaultAsync(todo => todo.Id == id);
 
             if (findedTodo is null)

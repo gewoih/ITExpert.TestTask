@@ -17,7 +17,7 @@ namespace ITExpert.Services.TodoManager.Controllers
 
         [HttpGet]
         [Route("get_all_todos")]
-        public async Task<List<Todo>> GetAllTodos()
+        public async Task<List<Tuple<Todo, string>>> GetAllTodos()
         {
             return await _todoService.GetTodosWithHashAsync();
         }

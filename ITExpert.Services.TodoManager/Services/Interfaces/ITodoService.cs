@@ -5,7 +5,7 @@ namespace ITExpert.Services.TodoManager.Services.Interfaces
 {
     public interface ITodoService
     {
-        public Task<List<Todo>> GetTodosWithHashAsync();
+        public Task<List<Tuple<Todo, string>>> GetTodosWithHashAsync();
         public Task CreateTodoAsync(string title, TodoCategory category, TodoColor color);
         public Task<Todo> GetTodoAsync(int id);
         public Task DeleteTodoAsync(int id);
