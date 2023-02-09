@@ -4,6 +4,10 @@ using ITExpert.Libraries.SharedLibrary.Models.DAO;
 using ITExpert.Services.TodoManager.DAL.DbContexts;
 using ITExpert.Services.TodoManager.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using NpgsqlTypes;
+using Serilog.Sinks.PostgreSQL.ColumnWriters;
+using Serilog.Sinks.PostgreSQL;
+using Serilog;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -12,13 +16,11 @@ namespace ITExpert.Services.TodoManager.Services
 	public sealed class TodoService : ITodoService
 	{
 		private readonly TodoDbContext _todoDbContext;
-		private readonly ILogger<TodoService> _logger;
 
-		public TodoService(ILogger<TodoService> logger, TodoDbContext todoDbContext)
+		public TodoService(TodoDbContext todoDbContext)
 		{
-			_logger = logger;
 			_todoDbContext = todoDbContext;
-		}
+        }
 
 		public async Task AddTodoCommentAsync(int id, string comment)
 		{

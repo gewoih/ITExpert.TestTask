@@ -1,7 +1,9 @@
 using ITExpert.Services.TodoManager.DAL.DbContexts;
+using ITExpert.Services.TodoManager.Middleware;
 using ITExpert.Services.TodoManager.Services;
 using ITExpert.Services.TodoManager.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 namespace ITExpert.Services.TodoManager
 {
@@ -11,21 +13,23 @@ namespace ITExpert.Services.TodoManager
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            var logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(builder.Configuration)
+                .CreateLogger();
+
+            builder.Services.AddSingleton(logger);
+
             var postgreSqlConnectionString = builder.Configuration.GetConnectionString("PostgreSQL");
             builder.Services.AddDbContext<TodoDbContext>(options => options.UseNpgsql(postgreSqlConnectionString));
-
             builder.Services.AddTransient<ITodoService, TodoService>();
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -37,6 +41,8 @@ namespace ITExpert.Services.TodoManager
             app.UseAuthorization();
 
             app.MapControllers();
+
+            app.UseMiddleware<HttpLoggingMiddleware>();
 
             app.Run();
         }
